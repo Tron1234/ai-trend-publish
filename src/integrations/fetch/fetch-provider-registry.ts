@@ -160,6 +160,14 @@ fetchProviderRegistry.register({
   matches: () => true,
 });
 
+fetchProviderRegistry.register({
+  id: "direct",
+  kind: "fetch",
+  scraperType: ScraperType.DIRECT_WEB,
+  isConfigured: () => true,
+  matches: () => true,
+});
+
 export function inferFetchProvider(url: string): FetchProviderId {
   const parsed = new URL(url);
   const matched = fetchProviderRegistry

@@ -19,6 +19,7 @@ import { ScraperType } from "@src/integrations/fetch/scraper-type.ts";
 import { SerperSearchScraper } from "@src/integrations/fetch/providers/serper-search-scraper.ts";
 import { TavilySearchScraper } from "@src/integrations/fetch/providers/tavily-search-scraper.ts";
 import { TwitterScraper } from "@src/integrations/fetch/providers/twitter-scraper.ts";
+import { DirectWebScraper } from "@src/integrations/fetch/providers/direct-web-scraper.ts";
 import { ResolvedTrendPublishConfig } from "@src/utils/config/define-config.ts";
 
 export interface ScraperAdapter
@@ -33,6 +34,13 @@ export const scraperRegistry = new ProviderRegistry<
   ResolvedTrendPublishConfig,
   ScraperAdapter
 >();
+
+scraperRegistry.register({
+  id: ScraperType.DIRECT_WEB,
+  kind: "fetch",
+  isConfigured: () => true,
+  create: () => new DirectWebScraper(),
+});
 
 scraperRegistry.register({
   id: ScraperType.JINA_READER,

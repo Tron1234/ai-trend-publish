@@ -38,40 +38,9 @@ export default defineConfig({
     /**
      * 内容抓取 provider 凭证。
      *
-     * 只需要填写 `fetchGroups` 会用到，或 `auto` 会推断到的 provider。
-     * 例如 Twitter/X URL 需要 twitter provider；普通网页默认通常需要
-     * FireCrawl，除非你把它路由到 Jina。
+     * 装修内容默认使用 `direct`：项目服务器直接读取公开的国内网页，
+     * 不需要第三方抓取服务或 API Key。
      */
-    fetch: {
-      firecrawl: {
-        apiKey: "",
-      },
-      twitter: {
-        bearerToken: "",
-        xquikApiKey: "",
-      },
-      jina: {
-        apiKey: "",
-      },
-      brave: {
-        apiKey: "",
-      },
-      tavily: {
-        apiKey: "",
-      },
-      exa: {
-        apiKey: "",
-      },
-      serper: {
-        apiKey: "",
-      },
-      newsapi: {
-        apiKey: "",
-      },
-      rss: {
-        baseUrl: "https://rsshub.app",
-      },
-    },
 
     /**
      * 图片生成凭证。
@@ -100,7 +69,7 @@ export default defineConfig({
       weixin: {
         appId: "",
         appSecret: "",
-        author: "装修好住指南",
+        author: "筑家录",
         needOpenComment: true,
         onlyFansCanComment: false,
         /**
@@ -114,7 +83,7 @@ export default defineConfig({
           // main: {
           //   appId: "",
           //   appSecret: "",
-          //   author: "装修好住指南",
+          //   author: "筑家录",
           // },
           // lab: {
           //   appId: "",
@@ -173,33 +142,14 @@ export default defineConfig({
    *
    * `sources` 里的数据源可以是普通 URL，也可以带分组前缀：
    * - "https://example.com" 使用 `default` 分组
-   * - "web:https://example.com" 使用 `web` 分组
-     * - "paidSearch:装修 验收 避坑" 使用 `paidSearch` 分组做关键词搜索
+   * - "domestic:https://example.cn/article" 使用 `domestic` 分组直连网页
    *
    * 分组里的 provider 会按顺序 fallback。谁先返回内容，就使用谁的结果。
-   * `auto` 会按 URL 自动推断 provider：
-   * - x.com / twitter.com -> twitter
-   * - RSS / RSSHub / feed URL -> rss
-   * - 其他网页 -> firecrawl
-   *
-   * `search` 是关键词发现能力。优先配置低成本搜索 provider；
-   * 装修内容推荐使用付费搜索或 Jina Search，避免通用新闻、技术社区和论文源带来无关内容。
+   * `direct` 不依赖外部抓取服务，适合公开的国内装修网站。
    */
   fetchGroups: {
-    default: ["auto"],
-    web: ["firecrawl", "jina"],
-    social: ["twitter"],
-    rss: ["rss"],
-    search: ["gdelt", "hackernews", "arxiv"],
-    paidSearch: [
-      "brave-search",
-      "jina-search",
-      "tavily-search",
-      "exa-search",
-      "serper-search",
-    ],
-    reliableWeb: ["firecrawl", "jina"],
-    freeResearch: ["gdelt", "hackernews", "arxiv"],
+    default: ["direct"],
+    domestic: ["direct"],
   },
 
   /**
@@ -216,12 +166,11 @@ export default defineConfig({
        * 再添加 `group:url` 前缀。
        */
       sources: [
-        "reliableWeb:https://www.0x08.org/posts/interior-decorating-material",
-        "reliableWeb:https://www.100.com.tw/article",
-        "web:https://www.zhihu.com/people/xiao-ling-xia-15/posts",
-        "web:https://www.zhihu.com/people/shi-letian",
-        "web:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
-        "paidSearch:装修 预算 报价 验收 材料 避坑",
+        "domestic:https://www.0x08.org/posts/interior-decorating-material",
+        "domestic:https://www.100.com.tw/article",
+        "domestic:https://www.zhihu.com/people/xiao-ling-xia-15/posts",
+        "domestic:https://www.zhihu.com/people/shi-letian",
+        "domestic:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
       ],
 
       /**

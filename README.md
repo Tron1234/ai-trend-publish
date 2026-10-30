@@ -14,7 +14,7 @@ dry-run 产物或创建微信公众号草稿。
 
 ![star](https://atomgit.com/liyown/ai-trend-publish/star/badge.svg)
 
-默认示例公众号：**装修好住指南**
+默认示例公众号：**筑家录**
 
 社区交流：
 

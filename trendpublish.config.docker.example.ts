@@ -20,21 +20,6 @@ export default defineConfig((runtime) => ({
       apiKey: runtime.required("AI_API_KEY"),
       model: runtime.value("AI_MODEL", "deepseek-chat"),
     },
-    fetch: {
-      firecrawl: {
-        apiKey: runtime.secret("FIRECRAWL_API_KEY"),
-      },
-      jina: {
-        apiKey: runtime.secret("JINA_API_KEY"),
-      },
-      twitter: {
-        bearerToken: runtime.secret("TWITTER_BEARER_TOKEN"),
-        xquikApiKey: runtime.secret("XQUIK_API_KEY"),
-      },
-      rss: {
-        baseUrl: runtime.value("RSSHUB_BASE_URL", "https://rsshub.app"),
-      },
-    },
     image: {
       dashscope: {
         apiKey: runtime.secret("DASHSCOPE_API_KEY"),
@@ -44,7 +29,7 @@ export default defineConfig((runtime) => ({
       weixin: {
         appId: runtime.secret("WEIXIN_APP_ID"),
         appSecret: runtime.secret("WEIXIN_APP_SECRET"),
-        author: runtime.value("WEIXIN_AUTHOR", "装修好住指南"),
+        author: runtime.value("WEIXIN_AUTHOR", "筑家录"),
         // 多公众号时可在这里配置 accounts，并用 WEIXIN_ACCOUNT_ID 选择。
         accounts: {},
       },
@@ -56,18 +41,14 @@ export default defineConfig((runtime) => ({
     },
   },
 
-  fetchGroups: {
-    default: ["auto"],
-    web: ["firecrawl", "jina"],
-    social: ["twitter"],
-  },
+  fetchGroups: { default: ["direct"], domestic: ["direct"] },
 
   features: {
     article: {
       sources: splitList(
         runtime.value(
           "ARTICLE_SOURCES",
-          "reliableWeb:https://www.0x08.org/posts/interior-decorating-material,reliableWeb:https://www.100.com.tw/article,web:https://www.zhihu.com/people/xiao-ling-xia-15/posts,web:https://www.zhihu.com/people/shi-letian,web:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
+          "domestic:https://www.0x08.org/posts/interior-decorating-material,domestic:https://www.100.com.tw/article,domestic:https://www.zhihu.com/people/xiao-ling-xia-15/posts,domestic:https://www.zhihu.com/people/shi-letian,domestic:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
         ),
       ),
       publisher: {

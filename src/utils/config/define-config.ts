@@ -14,6 +14,7 @@ export type ArticleTemplateType =
 
 export type FetchProviderName =
   | "auto"
+  | "direct"
   | "firecrawl"
   | "jina"
   | "jina-search"
@@ -84,6 +85,8 @@ export interface OpenAICompatibleConfig {
 
 /** 内容抓取供应商凭证。只需要填写数据源实际会用到的 provider。 */
 export interface FetchProvidersConfig {
+  /** 直连网页抓取不需要凭证，适合可公开访问的国内网页。 */
+  direct?: Record<string, never>;
   /** FireCrawl API Key。用于普通网页抓取和 web 类抓取分组。 */
   firecrawl?: {
     apiKey?: string;
@@ -706,7 +709,7 @@ function resolveWeixinAccountConfig(
   return {
     appId: account?.appId ?? "",
     appSecret: account?.appSecret ?? "",
-    author: account?.author ?? defaults?.author ?? "装修好住指南",
+    author: account?.author ?? defaults?.author ?? "筑家录",
     needOpenComment: account?.needOpenComment ??
       defaults?.needOpenComment ?? true,
     onlyFansCanComment: account?.onlyFansCanComment ??

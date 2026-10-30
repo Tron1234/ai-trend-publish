@@ -29,6 +29,10 @@ Deno.test("resolveSourceProviders expands auto and keeps fallback order", () => 
   assertEquals(resolveSourceProviders("AI agent news", ["auto"], "query"), [
     "jina-search",
   ]);
+  assertEquals(
+    resolveSourceProviders("https://www.100.com.tw/article", ["direct"]),
+    ["direct"],
+  );
 });
 
 Deno.test("planArticleSources resolves configured group providers", () => {

@@ -3,7 +3,6 @@ import {
   ArticleNotificationChannel,
   ArticleTemplateType,
   defineConfig,
-  FetchProviderName,
 } from "@src/utils/config/define-config.ts";
 import { PromptProfileName } from "./src/prompts/prompt-profile.ts";
 
@@ -23,30 +22,6 @@ export default defineConfig((runtime) => {
   const notificationChannels = splitList(
     runtime.value("NOTIFICATION_CHANNELS", ""),
   ) as ArticleNotificationChannel[];
-  const firecrawlApiKey = runtime.secret("FIRECRAWL_API_KEY");
-  const jinaApiKey = runtime.secret("JINA_API_KEY");
-  const braveApiKey = runtime.secret("BRAVE_SEARCH_API_KEY");
-  const tavilyApiKey = runtime.secret("TAVILY_API_KEY");
-  const exaApiKey = runtime.secret("EXA_API_KEY");
-  const serperApiKey = runtime.secret("SERPER_API_KEY");
-  const newsapiApiKey = runtime.secret("NEWSAPI_API_KEY");
-  const webFetchProviders = [
-    firecrawlApiKey ? "firecrawl" : "",
-    jinaApiKey ? "jina" : "",
-  ].filter(Boolean) as FetchProviderName[];
-  const paidSearchProviders = [
-    braveApiKey ? "brave-search" : "",
-    jinaApiKey ? "jina-search" : "",
-    tavilyApiKey ? "tavily-search" : "",
-    exaApiKey ? "exa-search" : "",
-    serperApiKey ? "serper-search" : "",
-    newsapiApiKey ? "newsapi" : "",
-  ].filter(Boolean) as FetchProviderName[];
-  const freeResearchProviders = [
-    "gdelt",
-    "hackernews",
-    "arxiv",
-  ] satisfies FetchProviderName[];
   const coverProvider = runtime.value(
     "COVER_PROVIDER",
     "dashscope",
@@ -80,36 +55,6 @@ export default defineConfig((runtime) => {
         timeoutMs: Number(runtime.value("AI_TIMEOUT_MS", "300000")),
         maxAttempts: Number(runtime.value("AI_MAX_ATTEMPTS", "2")),
       },
-      fetch: {
-        firecrawl: {
-          apiKey: firecrawlApiKey,
-        },
-        jina: {
-          apiKey: jinaApiKey,
-        },
-        brave: {
-          apiKey: braveApiKey,
-        },
-        tavily: {
-          apiKey: tavilyApiKey,
-        },
-        exa: {
-          apiKey: exaApiKey,
-        },
-        serper: {
-          apiKey: serperApiKey,
-        },
-        newsapi: {
-          apiKey: newsapiApiKey,
-        },
-        twitter: {
-          bearerToken: runtime.secret("TWITTER_BEARER_TOKEN"),
-          xquikApiKey: runtime.secret("XQUIK_API_KEY"),
-        },
-        rss: {
-          baseUrl: runtime.value("RSSHUB_BASE_URL", "https://rsshub.app"),
-        },
-      },
       image: {
         dashscope: {
           apiKey: runtime.secret("DASHSCOPE_API_KEY"),
@@ -123,7 +68,7 @@ export default defineConfig((runtime) => {
         weixin: {
           appId: runtime.secret("WEIXIN_APP_ID"),
           appSecret: runtime.secret("WEIXIN_APP_SECRET"),
-          author: runtime.value("WEIXIN_AUTHOR", "装修好住指南"),
+          author: runtime.value("WEIXIN_AUTHOR", "筑家录"),
           needOpenComment: booleanValue(
             runtime.value("WEIXIN_NEED_OPEN_COMMENT", ""),
             true,
@@ -151,25 +96,14 @@ export default defineConfig((runtime) => {
       },
     },
 
-    fetchGroups: {
-      default: ["auto"],
-      web: webFetchProviders.length ? webFetchProviders : ["firecrawl"],
-      reliableWeb: webFetchProviders.length ? webFetchProviders : ["firecrawl"],
-      social: ["twitter"],
-      rss: ["rss"],
-      search: freeResearchProviders,
-      freeResearch: freeResearchProviders,
-      paidSearch: paidSearchProviders.length
-        ? paidSearchProviders
-        : freeResearchProviders,
-    },
+    fetchGroups: { default: ["direct"], domestic: ["direct"] },
 
     features: {
       article: {
         sources: splitList(
           runtime.value(
             "ARTICLE_SOURCES",
-            "reliableWeb:https://www.0x08.org/posts/interior-decorating-material,reliableWeb:https://www.100.com.tw/article,web:https://www.zhihu.com/people/xiao-ling-xia-15/posts,web:https://www.zhihu.com/people/shi-letian,web:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
+            "domestic:https://www.0x08.org/posts/interior-decorating-material,domestic:https://www.100.com.tw/article,domestic:https://www.zhihu.com/people/xiao-ling-xia-15/posts,domestic:https://www.zhihu.com/people/shi-letian,domestic:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
           ),
         ),
         publisher: {

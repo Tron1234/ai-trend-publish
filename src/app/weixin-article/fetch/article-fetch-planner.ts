@@ -102,6 +102,8 @@ function getFetchProviderConfigHint(provider: ArticleFetchProvider): string {
   switch (provider) {
     case "firecrawl":
       return "providers.fetch.firecrawl.apiKey";
+    case "direct":
+      return "无需 API Key（直连网页抓取）";
     case "jina":
     case "jina-search":
       return "providers.fetch.jina.apiKey";
