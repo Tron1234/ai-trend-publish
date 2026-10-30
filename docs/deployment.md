@@ -110,7 +110,7 @@ export default defineConfig((runtime) => ({
   features: {
     article: {
       dryRun: true,
-      sources: ["https://news.ycombinator.com/"],
+      sources: ["https://www.100.com.tw/article"],
     },
   },
 }));

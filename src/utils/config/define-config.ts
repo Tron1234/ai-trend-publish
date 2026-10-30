@@ -706,7 +706,7 @@ function resolveWeixinAccountConfig(
   return {
     appId: account?.appId ?? "",
     appSecret: account?.appSecret ?? "",
-    author: account?.author ?? defaults?.author ?? "AI Trend Publish",
+    author: account?.author ?? defaults?.author ?? "装修好住指南",
     needOpenComment: account?.needOpenComment ??
       defaults?.needOpenComment ?? true,
     onlyFansCanComment: account?.onlyFansCanComment ??
@@ -891,7 +891,7 @@ export function resolveTrendPublishConfig(
         sources: article.sources ?? [],
         renderer: {
           template: articleRenderer.template ?? "minimal",
-          promptProfile: articleRenderer.promptProfile ?? "technology",
+          promptProfile: articleRenderer.promptProfile ?? "interior",
         },
         publisher: {
           provider: articlePublisher.provider ?? "weixin",

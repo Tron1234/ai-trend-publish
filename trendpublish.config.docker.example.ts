@@ -44,7 +44,7 @@ export default defineConfig((runtime) => ({
       weixin: {
         appId: runtime.secret("WEIXIN_APP_ID"),
         appSecret: runtime.secret("WEIXIN_APP_SECRET"),
-        author: runtime.value("WEIXIN_AUTHOR", "AI Trend Publish"),
+        author: runtime.value("WEIXIN_AUTHOR", "装修好住指南"),
         // 多公众号时可在这里配置 accounts，并用 WEIXIN_ACCOUNT_ID 选择。
         accounts: {},
       },
@@ -65,7 +65,10 @@ export default defineConfig((runtime) => ({
   features: {
     article: {
       sources: splitList(
-        runtime.value("ARTICLE_SOURCES", "https://news.ycombinator.com/"),
+        runtime.value(
+          "ARTICLE_SOURCES",
+          "reliableWeb:https://www.0x08.org/posts/interior-decorating-material,reliableWeb:https://www.100.com.tw/article,web:https://www.zhihu.com/people/xiao-ling-xia-15/posts,web:https://www.zhihu.com/people/shi-letian,web:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
+        ),
       ),
       publisher: {
         provider: runtime.value("WEIXIN_PUBLISH_PROVIDER", "weixin") as
@@ -75,7 +78,7 @@ export default defineConfig((runtime) => ({
       },
       renderer: {
         template: "dynamic",
-        promptProfile: "technology",
+        promptProfile: "interior",
       },
       count: Number(runtime.value("ARTICLE_COUNT", "10")),
       dryRun: true,

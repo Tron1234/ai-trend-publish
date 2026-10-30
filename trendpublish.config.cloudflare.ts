@@ -123,7 +123,7 @@ export default defineConfig((runtime) => {
         weixin: {
           appId: runtime.secret("WEIXIN_APP_ID"),
           appSecret: runtime.secret("WEIXIN_APP_SECRET"),
-          author: runtime.value("WEIXIN_AUTHOR", "AI Trend Publish"),
+          author: runtime.value("WEIXIN_AUTHOR", "装修好住指南"),
           needOpenComment: booleanValue(
             runtime.value("WEIXIN_NEED_OPEN_COMMENT", ""),
             true,
@@ -167,7 +167,10 @@ export default defineConfig((runtime) => {
     features: {
       article: {
         sources: splitList(
-          runtime.value("ARTICLE_SOURCES", "https://news.ycombinator.com/"),
+          runtime.value(
+            "ARTICLE_SOURCES",
+            "reliableWeb:https://www.0x08.org/posts/interior-decorating-material,reliableWeb:https://www.100.com.tw/article,web:https://www.zhihu.com/people/xiao-ling-xia-15/posts,web:https://www.zhihu.com/people/shi-letian,web:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
+          ),
         ),
         publisher: {
           provider: articlePublishProvider,
@@ -180,7 +183,7 @@ export default defineConfig((runtime) => {
           ) as ArticleTemplateType,
           promptProfile: runtime.value(
             "ARTICLE_PROMPT_PROFILE",
-            "technology",
+            "interior",
           ) as PromptProfileName,
         },
         count: Number(runtime.value("ARTICLE_COUNT", "10")),

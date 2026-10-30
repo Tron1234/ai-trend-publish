@@ -1,4 +1,5 @@
 export type PromptProfileName =
+  | "interior"
   | "technology"
   | "general"
   | "business"
@@ -22,6 +23,44 @@ export interface PromptProfile {
 }
 
 const PROMPT_PROFILES: Record<PromptProfileName, PromptProfile> = {
+  interior: {
+    id: "interior",
+    label: "装修与居住指南",
+    audience:
+      "正在装修、准备翻新或希望把家住得更舒适的中文读者，尤其是装修新手和小户型家庭",
+    editorialTone:
+      "像靠谱、有经验的装修编辑：从真实居住场景出发，讲清预算、工序、材料、尺寸和取舍；不制造焦虑，不替读者做超出证据的决定",
+    selectionFocus: [
+      "装修流程、预算报价、施工验收、材料选购、空间规划、收纳与软装中有明确参考价值的内容",
+      "能说明适用户型、使用场景、成本区间、常见坑或取舍条件的实操信息",
+      "有真实案例、明确尺寸/工艺/维护条件，且不会把个人偏好包装成唯一正确答案的文章",
+    ],
+    contentAngles: [
+      "居住问题：读者在什么户型、阶段或生活场景下会遇到这个问题",
+      "决策要点：材料、尺寸、工艺、预算、工期或验收时应比较什么，哪些信息需要向设计师或施工方确认",
+      "适用边界：哪些做法适合、哪些情况要谨慎；区分灵感参考、经验建议与必须由专业人士确认的事项",
+    ],
+    preferredTopics: [
+      "装修前的需求梳理、预算拆分、报价单阅读与合同避坑",
+      "水电、泥木、油漆、门窗、防水等施工工序与验收重点",
+      "瓷砖、地板、柜体、五金、灯光、卫浴等材料和产品的选择、维护与取舍",
+      "小户型、老房翻新、收纳、动线、采光、隔音和适老/亲子居住方案",
+      "有明确户型条件与前后对比的真实装修案例和空间灵感",
+    ],
+    lowValueSignals: [
+      "只晒效果图或堆砌风格词，却没有户型、预算、材料或落地条件的内容",
+      "绝对化避坑、夸大省钱效果、无法核验的价格或施工承诺",
+      "广告软文、搬运图集、过时规范，或将个案经验当成通用结论",
+    ],
+    titleGuidance:
+      "标题写清空间/材料/工序和读者收益，例如“卫生间防水怎么验收”“小户型餐边柜深度怎么留”；避免“装修必看”“不看后悔”“省下十万”这类夸张模板。",
+    layoutGuidance:
+      "像一篇好用的装修编辑指南：先说明适用场景和结论，再给关键尺寸、工序或比较维度；清单要能落地，案例要标出条件，结尾保留需要现场确认的变量。",
+    imageGuidance:
+      "真实、明亮、有生活感的居住空间、局部材质、收纳和施工细节；避免悬浮概念图、失真的家具比例和图片里的可读文字。",
+    coverGuidance:
+      "中文装修与居住指南，真实家居空间、材质细节、自然光、清爽留白，强调实用与安心。",
+  },
   technology: {
     id: "technology",
     label: "AI 科技趋势",
@@ -235,7 +274,7 @@ const PROMPT_PROFILES: Record<PromptProfileName, PromptProfile> = {
   },
 };
 
-export const DEFAULT_PROMPT_PROFILE: PromptProfileName = "technology";
+export const DEFAULT_PROMPT_PROFILE: PromptProfileName = "interior";
 
 export function resolvePromptProfile(
   profile?: PromptProfileName,
@@ -267,6 +306,16 @@ export function getChineseNewsroomStyleGuide(
       "科技稿要把模型、产品、公司、开源项目、论文或平台动作写清楚，避免只堆“AI 行业”“智能化”等泛词。",
       "如果是多条资讯，先选一个最有读者价值的主线；如果没有主线，就写成“精选短评”，不要硬凑成宏大趋势。",
       "判断要落在读者身上：开发者能不能用、产品会怎么变、企业成本是否变化、普通用户会不会感知到。",
+    ].join("\n- ");
+  }
+
+  if (resolved.id === "interior") {
+    return [
+      "中文装修编辑写作指南：",
+      ...commonRules,
+      "先交代房屋类型、空间、装修阶段或使用需求；没有原文依据时，不虚构面积、预算、工期、地区或施工条件。",
+      "涉及报价、尺寸、材料性能、工艺和验收时，保留原文中的条件和限制；价格、规范和安全事项不能用模糊常识补全。",
+      "把效果图灵感、个人审美和可复用的施工建议分开写；结构、防水、水电、燃气等高风险事项提示读者以现场专业判断为准。",
     ].join("\n- ");
   }
 

@@ -14,7 +14,7 @@ dry-run 产物或创建微信公众号草稿。
 
 ![star](https://atomgit.com/liyown/ai-trend-publish/star/badge.svg)
 
-示例公众号：**AISPACE科技空间**
+默认示例公众号：**装修好住指南**
 
 社区交流：
 
@@ -79,7 +79,7 @@ JSON。日常使用不需要手写配置文件。
 
 ## 适合场景
 
-- 每天自动整理 AI、技术、产品、商业或研究资讯，并发布到微信公众号。
+- 每天自动整理装修、材料、施工、空间规划与居住灵感，并发布到微信公众号。
 - 维护一组固定数据源，让系统自动发现值得写的选题。
 - 在正式发布前先 dry-run，审阅 HTML、配图、质量报告和错误。
 - 用 Cloudflare 定时运行，或在自己的服务器/Docker 上完整部署。
@@ -157,10 +157,10 @@ export default defineConfig({
       dryRun: true,
       renderer: {
         template: "minimal",
-        promptProfile: "technology",
+        promptProfile: "interior",
       },
       sources: [
-        "https://news.ycombinator.com/",
+        "reliableWeb:https://www.100.com.tw/article",
       ],
     },
   },
@@ -234,7 +234,7 @@ features: {
 | 目标           | 配置位置                                  | 说明                                                                         |
 | -------------- | ----------------------------------------- | ---------------------------------------------------------------------------- |
 | 选择文章模板   | `features.article.renderer.template`      | 支持 `minimal`、`longform`、`product`、`dynamic` 等                          |
-| 选择提示词风格 | `features.article.renderer.promptProfile` | 支持 `technology`、`business`、`product`、`developer`、`research`、`general` |
+| 选择提示词风格 | `features.article.renderer.promptProfile` | 默认 `interior`；也支持 `technology`、`business`、`product`、`developer`、`research`、`general` |
 | 配置数据源     | `features.article.sources`                | 直接写 URL，也可以用 `group:url` 指定抓取分组                                |
 | 配置抓取策略   | `fetchGroups`                             | 分组内 provider 按顺序 fallback                                              |
 | 开启封面生图   | `features.article.cover`                  | 支持 `dashscope` / `minimax`，需要对应 `providers.image.*.apiKey`            |
@@ -257,8 +257,8 @@ features: {
 features: {
   article: {
     sources: [
-      "https://news.ycombinator.com/",
-      "https://openai.com/news/",
+      "https://www.0x08.org/posts/interior-decorating-material",
+      "https://www.100.com.tw/article",
     ],
   },
 },
@@ -285,8 +285,8 @@ fetchGroups: {
 features: {
   article: {
     sources: [
-      "web:https://openai.com/news/",
-      "social:https://x.com/OpenAIDevs",
+      "web:https://www.100.com.tw/article",
+      "web:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
     ],
   },
 },

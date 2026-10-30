@@ -9,6 +9,7 @@
     "jsr:@db/sqlite@0.12": "0.12.0",
     "jsr:@deno-library/progress@*": "1.5.1",
     "jsr:@deno-library/progress@^1.5.1": "1.5.1",
+    "jsr:@deno/installer-shell-setup@*": "0.3.4",
     "jsr:@denosaurs/plug@1": "1.1.0",
     "jsr:@sapling/markdown@*": "0.3.0",
     "jsr:@sapling/markdown@0.3": "0.3.0",
@@ -97,6 +98,9 @@
         "jsr:@std/fmt@1.0.3",
         "jsr:@std/io"
       ]
+    },
+    "@deno/installer-shell-setup@0.3.4": {
+      "integrity": "48665d1a737d487cce6874bc97bba70a5aeffa7053aca3f60df93c6fab8963b4"
     },
     "@denosaurs/plug@1.1.0": {
       "integrity": "eb2f0b7546c7bca2000d8b0282c54d50d91cf6d75cb26a80df25a6de8c4bc044",

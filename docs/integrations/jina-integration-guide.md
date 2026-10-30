@@ -39,7 +39,7 @@ Reader / Search / DeepSearch 都复用 `providers.fetch.jina.apiKey`。未设置
 
 1. 抓取网页正文时，优先走 Jina Reader。
 2. 关键词发现数据源时，使用 Jina Search，例如
-   `search:AI agent research breakthrough latest`。
+   `paidSearch:装修 预算 报价 验收 材料 避坑`。
 3. 搜索类问答场景，使用 DeepSearch 获取汇总答案和来源。
 4. 需要语义相关性排序时，先 Embedding 再 Reranker。
 

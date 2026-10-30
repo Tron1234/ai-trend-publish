@@ -194,7 +194,7 @@ Deno.test("resolveTrendPublishConfig uses feature defaults without provider enab
   const config = resolveTrendPublishConfig(defineConfig({}));
 
   assertEquals(config.features.article.renderer.template, "minimal");
-  assertEquals(config.features.article.renderer.promptProfile, "technology");
+  assertEquals(config.features.article.renderer.promptProfile, "interior");
   assertEquals(config.features.article.deduplication.enabled, false);
   assertEquals(config.features.article.deduplication.vectorStore, "sqlite");
   assertEquals(config.features.article.qualityGate.enabled, true);

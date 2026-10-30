@@ -100,7 +100,7 @@ export default defineConfig({
       weixin: {
         appId: "",
         appSecret: "",
-        author: "AI Trend Publish",
+        author: "装修好住指南",
         needOpenComment: true,
         onlyFansCanComment: false,
         /**
@@ -114,7 +114,7 @@ export default defineConfig({
           // main: {
           //   appId: "",
           //   appSecret: "",
-          //   author: "AI Trend Publish",
+          //   author: "装修好住指南",
           // },
           // lab: {
           //   appId: "",
@@ -174,7 +174,7 @@ export default defineConfig({
    * `sources` 里的数据源可以是普通 URL，也可以带分组前缀：
    * - "https://example.com" 使用 `default` 分组
    * - "web:https://example.com" 使用 `web` 分组
-   * - "search:AI agent news" 使用 `search` 分组做关键词搜索
+     * - "paidSearch:装修 验收 避坑" 使用 `paidSearch` 分组做关键词搜索
    *
    * 分组里的 provider 会按顺序 fallback。谁先返回内容，就使用谁的结果。
    * `auto` 会按 URL 自动推断 provider：
@@ -183,7 +183,7 @@ export default defineConfig({
    * - 其他网页 -> firecrawl
    *
    * `search` 是关键词发现能力。优先配置低成本搜索 provider；
-   * `gdelt`、`hackernews`、`arxiv` 不需要 API Key，适合免费补充新闻、社区和论文线索。
+   * 装修内容推荐使用付费搜索或 Jina Search，避免通用新闻、技术社区和论文源带来无关内容。
    */
   fetchGroups: {
     default: ["auto"],
@@ -216,17 +216,12 @@ export default defineConfig({
        * 再添加 `group:url` 前缀。
        */
       sources: [
-        "https://news.ycombinator.com/",
-        "web:https://example.com/ai-news",
-        "social:https://x.com/OpenAIDevs",
-        "reliableWeb:https://openai.com/news/",
-        "reliableWeb:https://www.anthropic.com/news",
-        "reliableWeb:https://blog.google/technology/ai/",
-        "reliableWeb:https://deepmind.google/discover/blog/",
-        "reliableWeb:https://ai.meta.com/blog/",
-        "search:AI agent research breakthrough latest",
-        "rss:https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
-        "rss:https://huggingface.co/blog/feed.xml",
+        "reliableWeb:https://www.0x08.org/posts/interior-decorating-material",
+        "reliableWeb:https://www.100.com.tw/article",
+        "web:https://www.zhihu.com/people/xiao-ling-xia-15/posts",
+        "web:https://www.zhihu.com/people/shi-letian",
+        "web:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
+        "paidSearch:装修 预算 报价 验收 材料 避坑",
       ],
 
       /**
@@ -252,7 +247,7 @@ export default defineConfig({
        */
       renderer: {
         template: "dynamic",
-        promptProfile: "technology",
+        promptProfile: "interior",
       },
 
       /**

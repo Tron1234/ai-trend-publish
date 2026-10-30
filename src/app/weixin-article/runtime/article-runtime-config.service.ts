@@ -178,7 +178,7 @@ async function seedWeixinAccountProfiles(
   const accountIds = Object.keys(baseConfig.providers.publish.weixin.accounts);
   const hasDefault = Boolean(
     baseConfig.providers.publish.weixin.appId &&
-      baseConfig.providers.publish.weixin.appSecret,
+    baseConfig.providers.publish.weixin.appSecret,
   );
   const ids = hasDefault ? ["default", ...accountIds] : accountIds;
   for (const id of ids) {
@@ -198,8 +198,8 @@ function defaultWeixinAccountProfile(id: string): Omit<
     defaultArticleProfileId: DEFAULT_ARTICLE_PROFILE_ID,
     brand: {
       displayName,
-      positioning: "围绕 AI 趋势生产高质量微信文章",
-      audience: "关注 AI 产品、技术和行业趋势的读者",
+      positioning: "围绕旧房翻新趋势生产高质量微信文章",
+      audience: "关注 旧房翻新/改造、建筑材料升级、装修技术和装修行业趋势的读者",
       tone: "专业、克制、清晰，减少 AI 味和空话",
       titleStyle: "有信息钩子，但不标题党",
       forbiddenTopics: [],
@@ -487,8 +487,7 @@ function applyAccountSourceGroups(
   if (selected.some((source) => source.enabled)) return selected;
 
   throw new Error(
-    `账号 ${
-      account?.name ?? account?.id ?? "default"
+    `账号 ${account?.name ?? account?.id ?? "default"
     } 的数据源分组没有可用来源: ${groups.join(", ")}`,
   );
 }

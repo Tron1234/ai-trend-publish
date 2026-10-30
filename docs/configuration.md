@@ -48,7 +48,7 @@ export default defineConfig((runtime) => ({
   features: {
     article: {
       dryRun: true,
-      sources: ["https://news.ycombinator.com/"],
+      sources: ["https://www.100.com.tw/article"],
     },
   },
 }));
@@ -309,13 +309,13 @@ features: {
     dryRun: true,
     renderer: {
       template: "dynamic",
-      promptProfile: "technology",
+      promptProfile: "interior",
     },
     sources: [
-      "https://news.ycombinator.com/",
-      "web:https://openai.com/news/",
-      "social:https://x.com/OpenAIDevs",
-      "search:AI agent research breakthrough latest",
+      "reliableWeb:https://www.0x08.org/posts/interior-decorating-material",
+      "reliableWeb:https://www.100.com.tw/article",
+      "web:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
+      "paidSearch:装修 预算 报价 验收 材料 避坑",
     ],
   },
 },
@@ -598,10 +598,11 @@ Axiom 需要先创建 dataset 和带 ingest 权限的 API token。Better Stack L
 
 `features.article.renderer.promptProfile`
 控制同一条微信文章链路里的排序、摘要、标题、动态模板和 AI 配图口径。默认值是
-`technology`，适合 AI 科技资讯。
+`interior`，适合装修与居住内容。
 
 可选值：
 
+- `interior`: 装修与居住指南，关注预算、施工、材料、空间规划、收纳与真实居住案例。
 - `technology`: AI 科技趋势，关注模型、产品、开源、工程和科技商业动态。
 - `general`: 通用资讯，适合更宽泛的信息简报。
 - `business`: 商业与产业，关注公司战略、资本、市场和产业信号。

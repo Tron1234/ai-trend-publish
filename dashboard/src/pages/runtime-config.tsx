@@ -54,6 +54,7 @@ const TEMPLATE_OPTIONS = [
   "random",
 ];
 const PROMPT_PROFILE_OPTIONS = [
+  "interior",
   "technology",
   "general",
   "business",
@@ -271,7 +272,7 @@ function articleDraftFromConfig(
     promptProfile: readString(
       article,
       ["renderer", "promptProfile"],
-      "technology",
+      "interior",
     ),
     llmProfileId: readString(article, ["renderer", "llmProfileId"], "") ||
       firstCapabilityId(capabilities, "llm"),

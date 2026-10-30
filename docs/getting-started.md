@@ -41,11 +41,11 @@ cp trendpublish.config.example.ts trendpublish.config.ts
 features: {
   article: {
     renderer: {
-      promptProfile: "technology",
+      promptProfile: "interior",
     },
     sources: [
-      "https://news.ycombinator.com/",
-      "social:https://x.com/OpenAIDevs",
+      "reliableWeb:https://www.100.com.tw/article",
+      "web:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
     ],
   },
 },
@@ -62,7 +62,7 @@ fetchGroups: {
 features: {
   article: {
     renderer: {
-      promptProfile: "technology",
+      promptProfile: "interior",
     },
     sources: [
       "https://your-feed.example.com/rss.xml",

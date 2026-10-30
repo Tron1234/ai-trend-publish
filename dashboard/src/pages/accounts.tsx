@@ -489,7 +489,7 @@ export function AccountsWorkspace(
               <span className="tp-muted text-xs font-medium">提示词风格</span>
               <Input
                 value={draft.promptProfile}
-                placeholder="technology / business"
+                placeholder="interior / business"
                 onChange={(event) =>
                   setDraft({
                     ...draft,
