@@ -314,7 +314,6 @@ features: {
     sources: [
       "reliableWeb:https://www.0x08.org/posts/interior-decorating-material",
       "reliableWeb:https://www.100.com.tw/article",
-      "web:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
       "paidSearch:装修 预算 报价 验收 材料 避坑",
     ],
   },

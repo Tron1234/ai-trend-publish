@@ -70,7 +70,7 @@ class FakeFetcher implements ArticleContentFetcher {
         title: `${source.url} result ${index}`,
         content: `Search snippet ${index}`,
         url: index === 1
-          ? `https://openai.com/news/${encodeURIComponent(source.url)}`
+          ? `https://www.mohurd.gov.cn/zhengce/${encodeURIComponent(source.url)}`
           : `https://example.com/${encodeURIComponent(source.url)}/${index}`,
         publishDate: "2026-05-24T00:00:00.000Z",
         metadata: {

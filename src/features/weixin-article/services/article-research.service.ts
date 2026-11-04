@@ -237,46 +237,52 @@ function inferSourceType(
   const host = readHost(url);
   if (!host) return "background";
   if (
-    host.includes("github.com") && !isFirstPartyGithubUrl(url, querySignals)
-  ) {
-    return "community";
-  }
-  if (
-    host.endsWith(".gov") ||
-    host.endsWith(".edu") ||
-    host.includes("openai.com") ||
-    host.includes("anthropic.com") ||
-    host.includes("deepmind.google") ||
-    host.includes("research.google") ||
-    host.includes("blog.google") ||
-    host.includes("googleblog.com") ||
-    host.includes("microsoft.com") ||
-    host.includes("github.com")
+    host.endsWith(".gov.cn") ||
+    host.includes("mohurd.gov.cn") ||
+    host.includes("samr.gov.cn") ||
+    host.includes("cbda.com.cn") ||
+    host.includes("suofeiya.com") ||
+    host.includes("oppein.com") ||
+    host.includes("powerdekor.com") ||
+    host.includes("marco.com.cn") ||
+    host.includes("kohler.com") ||
+    host.includes("toto.com")
   ) {
     return "official";
   }
   if (
-    host.includes("arxiv.org") ||
-    host.includes("paperswithcode.com") ||
-    host.includes("huggingface.co") ||
-    host.includes("pmc.ncbi.nlm.nih.gov")
+    host.endsWith(".edu.cn") ||
+    host.includes("cnki.net") ||
+    host.includes("wanfangdata.com.cn") ||
+    host.includes("openstd.samr.gov.cn")
   ) {
     return "primary";
   }
   if (
-    host.includes("x.com") ||
-    host.includes("twitter.com") ||
-    host.includes("reddit.com") ||
-    host.includes("news.ycombinator.com")
+    host.includes("zhihu.com") ||
+    host.includes("xiaohongshu.com") ||
+    host.includes("douban.com") ||
+    host.includes("haohaozhu.cn") ||
+    host.includes("yidoutang.com") ||
+    host.includes("jianshu.com")
   ) {
     return "community";
   }
   if (
-    host.includes("techcrunch.com") ||
-    host.includes("theverge.com") ||
-    host.includes("wired.com") ||
-    host.includes("36kr.com") ||
-    host.includes("qbitai.com")
+    host.includes("sj33.cn") ||
+    host.includes("archcollege.com") ||
+    host.includes("shejiben.com") ||
+    host.includes("pchouse.com.cn") ||
+    host.includes("to8to.com") ||
+    host.includes("jia.com") ||
+    host.includes("zhuangyi.com") ||
+    host.includes("jiaju.sina.com.cn") ||
+    host.includes("home.163.com") ||
+    host.includes("archdaily.cn") ||
+    host.includes("gooood.cn") ||
+    host.includes("dezeen.com") ||
+    host.includes("designboom.com") ||
+    host.includes("houzz.com")
   ) {
     return "media";
   }
@@ -448,49 +454,23 @@ function readHost(value: string): string | undefined {
   }
 }
 
-function isFirstPartyGithubUrl(url: string, querySignals: string[]): boolean {
-  try {
-    const pathParts = new URL(url).pathname.toLowerCase().split("/").filter(
-      Boolean,
-    );
-    const owner = pathParts[0];
-    if (!owner) return false;
-    return githubOwnerSignalRules.some((rule) =>
-      rule.owners.includes(owner) &&
-      rule.signals.some((signal) => querySignals.includes(signal))
-    );
-  } catch {
-    return false;
-  }
-}
-
 const officialHostSignalRules = [
-  { host: "openai.com", signals: ["openai", "codex", "gpt"] },
-  { host: "anthropic.com", signals: ["anthropic", "claude", "opus"] },
-  { host: "deepmind.google", signals: ["deepmind", "gemini", "gemma"] },
-  { host: "blog.google", signals: ["google", "gemini", "gemma"] },
-  { host: "microsoft.com", signals: ["microsoft", "azure"] },
-];
-
-const githubOwnerSignalRules = [
-  { owners: ["openai"], signals: ["openai", "codex", "gpt"] },
-  { owners: ["anthropics", "anthropic-ai"], signals: ["anthropic", "claude"] },
-  {
-    owners: ["google", "google-deepmind", "deepmind"],
-    signals: ["google", "gemini", "gemma"],
-  },
-  { owners: ["microsoft"], signals: ["microsoft", "azure"] },
+  { host: "mohurd.gov.cn", signals: ["住宅", "标准", "规范", "政策"] },
+  { host: "samr.gov.cn", signals: ["标准", "质量", "抽检"] },
+  { host: "cbda.com.cn", signals: ["协会", "行业", "装修"] },
 ];
 
 const domainSynonyms: Array<[RegExp, string]> = [
-  [/前沿治理框架|治理框架/u, "frontier governance framework"],
-  [/可信第三方|第三方评估/u, "trustworthy third party evaluations"],
-  [/合规自查|安全评估/u, "safety evaluations compliance"],
-  [/税务(?:agent|智能体)|tax\s*agent/u, "tax agents"],
-  [/混合云|本地部署|企业部署/u, "hybrid on-premises enterprise environments"],
-  [/编码智能体|编程助手/u, "coding agents"],
-  [/上下文窗口/u, "context window"],
-  [/定价/u, "pricing"],
+  [/全屋定制|定制柜|橱柜/u, "custom cabinetry"],
+  [/防水|闭水试验/u, "waterproofing test"],
+  [/验收|巡检/u, "acceptance inspection"],
+  [/预算|报价单/u, "budget quotation"],
+  [/小户型|一居/u, "small apartment"],
+  [/老房翻新|旧房改造|二手房/u, "old house renovation"],
+  [/瓷砖|地砖|墙砖/u, "ceramic tile"],
+  [/板材|人造板|木作/u, "engineered wood panel"],
+  [/甲醛|环保等级/u, "formaldehyde emission"],
+  [/收纳|储物/u, "built-in storage"],
 ];
 
 const genericResearchTokens = new Set([

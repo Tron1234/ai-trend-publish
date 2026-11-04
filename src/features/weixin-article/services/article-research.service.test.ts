@@ -63,9 +63,9 @@ Deno.test("article research skips noisy candidates before hydration", async () =
     contents: contentFixtures(),
   });
 
-  assertEquals(fetcher.hydratedUrls, ["https://blog.google/technology/ai/"]);
+  assertEquals(fetcher.hydratedUrls, ["https://www.mohurd.gov.cn/zhengce/wenjian/"]);
   assertEquals(pack.items.map((item) => item.url), [
-    "https://blog.google/technology/ai/",
+    "https://www.mohurd.gov.cn/zhengce/wenjian/",
   ]);
 });
 
@@ -87,7 +87,7 @@ Deno.test("article research rejects superficially official but unrelated evidenc
   });
 
   assertEquals(pack.items.map((item) => item.url), [
-    "https://blog.google/technology/ai/gemini/",
+    "https://www.mohurd.gov.cn/zhengce/wenjian/",
   ]);
 });
 
@@ -117,8 +117,8 @@ class FakeFetcher implements ArticleContentFetcher {
       provider: "jina-search",
       failures: [],
       contents: [
-        content("official", "https://blog.google/technology/ai/gemini/"),
-        content("paper", "https://arxiv.org/abs/2605.00001"),
+        content("official", "https://www.mohurd.gov.cn/zhengce/wenjian/"),
+        content("paper", "https://www.cnki.net/kcms/detail/11.0001.example.html"),
         {
           ...content("noise", "https://example.com/noise"),
           content: "short",
@@ -150,7 +150,7 @@ class NoisyCandidateFetcher implements ArticleContentFetcher {
       provider: "jina-search",
       failures: [],
       contents: [
-        content("official", "https://blog.google/technology/ai/"),
+        content("official", "https://www.mohurd.gov.cn/zhengce/wenjian/"),
         content("zhihu", "https://zhuanlan.zhihu.com/p/2040317759591027222"),
         content("sina", "https://finance.sina.com.cn/stock/t/example.shtml"),
         content("youtube", "https://www.youtube.com/watch?v=abc"),
@@ -182,9 +182,9 @@ class ManyOfficialFetcher implements ArticleContentFetcher {
       provider: "jina-search",
       failures: [],
       contents: [
-        content("official-a", "https://blog.google/technology/ai/a"),
-        content("official-b", "https://blog.google/technology/ai/b"),
-        content("official-c", "https://blog.google/technology/ai/c"),
+        content("official-a", "https://www.samr.gov.cn/zw/zfxxgk/a"),
+        content("official-b", "https://www.samr.gov.cn/zw/zfxxgk/b"),
+        content("official-c", "https://www.samr.gov.cn/zw/zfxxgk/c"),
       ],
     });
   }
@@ -213,15 +213,15 @@ class UnrelatedGithubFetcher implements ArticleContentFetcher {
       contents: [
         {
           ...content(
-            "Antigravity account switcher",
-            "https://github.com/lbjlaq/Antigravity-Manager",
+            "装修材料批发清单",
+            "https://www.example-decor-supply.com/p/123",
           ),
           content:
-            "Professional Antigravity account manager and protocol proxy for developer tools. It focuses on local account switching and routing.",
+            "装饰材料批发目录，只列出规格和报价，与本篇讨论的防水验收无关。",
         },
         content(
-          "Gemini agentic update official announcement",
-          "https://blog.google/technology/ai/gemini/",
+          "卫生间防水验收标准与闭水试验做法",
+          "https://www.mohurd.gov.cn/zhengce/wenjian/",
         ),
       ],
     });
@@ -242,7 +242,7 @@ function content(id: string, url: string): ScrapedContent {
     id,
     title: id,
     content:
-      "This is a sufficiently long Gemini source summary that should be retained by the evidence filter. It includes enough context about the Google announcement, product change, and source relevance.",
+      "卫生间防水验收需要在闭水试验完成后进行，并且要核对墙面与地面的衔接处理、地漏坡度和门口拦水条高度。闭水试验一般蓄水深度不少于二十毫米，持续二十四小时后到楼下对应位置观察有无渗漏痕迹。淋浴区墙面防水高度通常做到一点八米，其余墙面不低于三百毫米，管根和阴阳角要做附加层。地面防水层完成后应及时做保护层，避免后续工序破坏，验收时逐项记录并留存照片，发现问题要在贴砖前返修。",
     url,
     publishDate: "2026-05-24T00:00:00.000Z",
     metadata: { provider: "jina-search" },
@@ -255,9 +255,9 @@ function topicReportFixture(): EditorialTopicReport {
     fallback: false,
     clusters: [{
       id: "topic-1",
-      title: "Gemini agentic update",
-      summary: "Gemini product updates.",
-      keywords: ["Gemini", "agent", "Google"],
+      title: "卫生间防水验收",
+      summary: "闭水试验与防水验收要点。",
+      keywords: ["卫生间", "防水", "验收", "闭水试验"],
       articleIds: ["a1"],
       primaryArticleId: "a1",
       sourceCount: 1,
@@ -285,9 +285,9 @@ function decisionFixture(): EditorialDecision {
     generatedAt: "2026-05-24T00:00:00.000Z",
     fallback: false,
     leadTopicId: "topic-1",
-    leadTopicTitle: "Gemini agentic update",
-    decisionSummary: "围绕 Gemini agentic 更新成文。",
-    whyThisNow: ["Google I/O 发布"],
+    leadTopicTitle: "卫生间防水验收",
+    decisionSummary: "围绕卫生间防水验收成文。",
+    whyThisNow: ["业主集中进入验收阶段"],
     selectedTopics: [{
       topicId: "topic-1",
       role: "lead",
@@ -309,9 +309,9 @@ function decisionFixture(): EditorialDecision {
 function contentFixtures(): ScrapedContent[] {
   return [{
     id: "a1",
-    title: "Gemini agentic update",
-    content: "Gemini app updates.",
-    url: "https://blog.google/technology/ai/gemini/",
+    title: "卫生间防水验收",
+    content: "闭水试验与防水验收要点。",
+    url: "https://www.mohurd.gov.cn/zhengce/wenjian/",
     publishDate: "2026-05-24T00:00:00.000Z",
     metadata: {},
   }];

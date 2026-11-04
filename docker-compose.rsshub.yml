@@ -1,0 +1,32 @@
+# 自建 RSSHub：把知乎这类有反爬的站点转成标准 RSS，再交给本项目的 `rss:` 数据源。
+#
+# 启动：
+#   docker compose -f docker-compose.rsshub.yml up -d
+# 验证：
+#   curl "http://localhost:1200/zhihu/zhuanlan/<专栏slug>"
+#
+# 关于知乎 cookie：
+#   专栏路由（/zhihu/zhuanlan/:id）当前无需登录即可抓取。
+#   个人主页相关路由（/zhihu/posts/originals/:id、/zhihu/people/activities/:id 等）
+#   会被知乎以 403 拦截，必须提供登录态，写入下面的 ZHIHU_COOKIES。
+#   取法：浏览器登录知乎 → 开发者工具 Network → 任意 zhihu.com 请求 →
+#   Request Headers 里完整复制 Cookie 值（必须包含 z_c0）。
+#   cookie 属于凭证，只放本机环境变量或 .env 文件，不要提交到仓库。
+#
+# 校验 cookie 是否有效（返回 <item> 即有效；返回 401 说明 cookie 过期）：
+#   curl -s "http://localhost:1200/zhihu/posts/originals/shi-letian" | grep -c '<item>'
+services:
+  rsshub:
+    image: diygod/rsshub:latest
+    container_name: trendpublish-rsshub
+    restart: unless-stopped
+    ports:
+      - "1200:1200"
+    environment:
+      NODE_ENV: production
+      # 知乎登录 cookie，含 z_c0；从 .env 读取，缺省为空
+      ZHIHU_COOKIES: ${ZHIHU_COOKIES:-}
+      # 缓存时间（秒），避免同一条 feed 被反复请求知乎
+      CACHE_EXPIRE: "300"
+      # 单条内容（正文）的缓存时间（秒）
+      CACHE_CONTENT_EXPIRE: "3600"

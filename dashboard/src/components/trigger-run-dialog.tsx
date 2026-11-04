@@ -262,19 +262,8 @@ export function TriggerRunDialog(
                 onChange={(event) => setSourceType(event.currentTarget.value)}
               >
                 <option value="all">全部</option>
-                <option value="firecrawl">网页</option>
-                <option value="jina">Jina Reader</option>
-                <option value="jina-search">Jina Search</option>
-                <option value="brave-search">Brave Search</option>
-                <option value="tavily-search">Tavily</option>
-                <option value="exa-search">Exa</option>
-                <option value="serper-search">Serper</option>
-                <option value="newsapi">NewsAPI</option>
-                <option value="gdelt">GDELT</option>
-                <option value="hackernews">Hacker News</option>
-                <option value="arxiv">arXiv</option>
-                <option value="twitter">Twitter/X</option>
                 <option value="rss">RSS</option>
+                <option value="direct">网页直连</option>
               </Select>
             </label>
           </div>

@@ -702,7 +702,7 @@ function createConfigSource(): TrendPublishConfig {
         sources: ["web:https://example.com"],
         renderer: {
           template: "dynamic",
-          promptProfile: "technology",
+          promptProfile: "interior",
         },
         count: 5,
         dryRun: true,

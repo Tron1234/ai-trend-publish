@@ -52,7 +52,7 @@ const DEFAULT_AI_IMAGE_LAYOUT_CONFIG: AiImageLayoutConfig = {
   imageSize: "1024*1024",
   imageModel: "qwen-image-2.0",
   imageGeneratorType: ImageGeneratorType.ALIYUN_IMAGE,
-  promptProfile: "technology",
+  promptProfile: "interior",
 };
 
 /**

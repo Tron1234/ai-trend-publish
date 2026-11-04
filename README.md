@@ -286,7 +286,6 @@ features: {
   article: {
     sources: [
       "web:https://www.100.com.tw/article",
-      "web:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
     ],
   },
 },

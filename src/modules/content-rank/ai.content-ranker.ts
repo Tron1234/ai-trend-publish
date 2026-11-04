@@ -197,8 +197,8 @@ function isLikelyListPageContent(content: ScrapedContent): boolean {
   if (booleanMetadata(content.metadata, "requiresHydration")) return false;
 
   const title = content.title.trim().toLowerCase();
-  const genericTitle = /^(news|blog|updates?|openai news|anthropic news)$/i
-    .test(title);
+  const genericTitle =
+    /^(news|blog|updates?|首页|资讯|新闻|案例|装修攻略)$/i.test(title);
   const markdownLinkCount = (content.content.match(/\]\(https?:\/\//g) ?? [])
     .length;
   const imageCount = (content.content.match(/!\[[^\]]*]\(https?:\/\//g) ?? [])
@@ -248,15 +248,15 @@ function sourceScore(url: string): number {
 
   if (
     [
-      "openai.com",
-      "anthropic.com",
-      "deepmind.google",
-      "blog.google",
-      "ai.meta.com",
-      "huggingface.co",
-      "microsoft.com",
-      "github.com",
-      "arxiv.org",
+      "mohurd.gov.cn",
+      "samr.gov.cn",
+      "cbda.com.cn",
+      "suofeiya.com",
+      "oppein.com",
+      "powerdekor.com",
+      "marco.com.cn",
+      "kohler.com",
+      "toto.com",
     ].some((domain) => hostname === domain || hostname.endsWith(`.${domain}`))
   ) {
     return 10;
@@ -264,20 +264,28 @@ function sourceScore(url: string): number {
 
   if (
     [
-      "theverge.com",
-      "techcrunch.com",
-      "wired.com",
-      "mit.edu",
-      "nature.com",
-      "science.org",
-      "36kr.com",
-      "qbitai.com",
+      "sj33.cn",
+      "archcollege.com",
+      "shejiben.com",
+      "pchouse.com.cn",
+      "to8to.com",
+      "jia.com",
+      "archdaily.cn",
+      "gooood.cn",
+      "dezeen.com",
+      "designboom.com",
+      "houzz.com",
+      "jiaju.sina.com.cn",
+      "home.163.com",
     ].some((domain) => hostname === domain || hostname.endsWith(`.${domain}`))
   ) {
     return 5;
   }
 
-  if (hostname.includes("twitter.com") || hostname.includes("x.com")) {
+  if (
+    ["zhihu.com", "xiaohongshu.com", "douban.com", "haohaozhu.cn"]
+      .some((domain) => hostname === domain || hostname.endsWith(`.${domain}`))
+  ) {
     return 1;
   }
 
@@ -295,7 +303,7 @@ function titleScore(title: string): number {
   ) {
     return -8;
   }
-  if (/震撼|炸裂|史上|王炸|杀疯|重磅/i.test(normalized)) return -5;
+  if (/必看|不看后悔|史上最|惊呆|震惊|秒杀全场/i.test(normalized)) return -5;
   return 6;
 }
 

@@ -22,7 +22,7 @@ Deno.test("cover service records generated cover details", async () => {
         generate: async () => "https://example.com/cover.png",
       }),
     },
-    "technology",
+    "interior",
     "qwen-image-2.0-pro",
     ImageGeneratorType.ALIYUN_POSTER,
   );
@@ -56,7 +56,7 @@ Deno.test("cover service records fallback reason", async () => {
         },
       }),
     },
-    "technology",
+    "interior",
     "qwen-image-2.0-pro",
     ImageGeneratorType.ALIYUN_POSTER,
   );
@@ -87,7 +87,7 @@ Deno.test("cover service falls back when image generation hangs", async () => {
         generate: () => new Promise<string>(() => {}),
       }),
     },
-    "technology",
+    "interior",
     "qwen-image-2.0-pro",
     ImageGeneratorType.ALIYUN_POSTER,
     undefined,

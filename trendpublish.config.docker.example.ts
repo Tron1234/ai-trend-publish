@@ -41,14 +41,14 @@ export default defineConfig((runtime) => ({
     },
   },
 
-  fetchGroups: { default: ["direct"], domestic: ["direct"] },
+  fetchGroups: { default: ["direct"], domestic: ["direct"], rss: ["rss"] },
 
   features: {
     article: {
       sources: splitList(
         runtime.value(
           "ARTICLE_SOURCES",
-          "domestic:https://www.0x08.org/posts/interior-decorating-material,domestic:https://www.100.com.tw/article,domestic:https://www.zhihu.com/people/xiao-ling-xia-15/posts,domestic:https://www.zhihu.com/people/shi-letian,domestic:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
+          "rss:https://www.sj33.cn/rss,rss:https://www.archcollege.com/feed,rss:https://www.designboom.com/feed/,rss:https://www.dezeen.com/feed/,domestic:https://www.0x08.org/posts/interior-decorating-material",
         ),
       ),
       publisher: {

@@ -220,40 +220,52 @@ function inferSourceType(url: string): EvidenceSourceType {
   const host = readHost(url);
   if (!host) return "background";
   if (
-    host.endsWith(".gov") ||
-    host.endsWith(".edu") ||
-    host.includes("openai.com") ||
-    host.includes("anthropic.com") ||
-    host.includes("deepmind.google") ||
-    host.includes("research.google") ||
-    host.includes("blog.google") ||
-    host.includes("googleblog.com") ||
-    host.includes("microsoft.com") ||
-    host.includes("github.com")
+    host.endsWith(".gov.cn") ||
+    host.includes("mohurd.gov.cn") ||
+    host.includes("samr.gov.cn") ||
+    host.includes("cbda.com.cn") ||
+    host.includes("suofeiya.com") ||
+    host.includes("oppein.com") ||
+    host.includes("powerdekor.com") ||
+    host.includes("marco.com.cn") ||
+    host.includes("kohler.com") ||
+    host.includes("toto.com")
   ) {
     return "official";
   }
   if (
-    host.includes("arxiv.org") ||
-    host.includes("paperswithcode.com") ||
-    host.includes("huggingface.co")
+    host.endsWith(".edu.cn") ||
+    host.includes("cnki.net") ||
+    host.includes("wanfangdata.com.cn") ||
+    host.includes("openstd.samr.gov.cn")
   ) {
     return "primary";
   }
   if (
-    host.includes("x.com") ||
-    host.includes("twitter.com") ||
-    host.includes("reddit.com") ||
-    host.includes("news.ycombinator.com")
+    host.includes("zhihu.com") ||
+    host.includes("xiaohongshu.com") ||
+    host.includes("douban.com") ||
+    host.includes("haohaozhu.cn") ||
+    host.includes("yidoutang.com") ||
+    host.includes("jianshu.com")
   ) {
     return "community";
   }
   if (
-    host.includes("techcrunch.com") ||
-    host.includes("theverge.com") ||
-    host.includes("wired.com") ||
-    host.includes("36kr.com") ||
-    host.includes("qbitai.com")
+    host.includes("sj33.cn") ||
+    host.includes("archcollege.com") ||
+    host.includes("shejiben.com") ||
+    host.includes("pchouse.com.cn") ||
+    host.includes("to8to.com") ||
+    host.includes("jia.com") ||
+    host.includes("zhuangyi.com") ||
+    host.includes("jiaju.sina.com.cn") ||
+    host.includes("home.163.com") ||
+    host.includes("archdaily.cn") ||
+    host.includes("gooood.cn") ||
+    host.includes("dezeen.com") ||
+    host.includes("designboom.com") ||
+    host.includes("houzz.com")
   ) {
     return "media";
   }

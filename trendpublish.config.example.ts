@@ -150,6 +150,7 @@ export default defineConfig({
   fetchGroups: {
     default: ["direct"],
     domestic: ["direct"],
+    rss: ["rss"],
   },
 
   /**
@@ -166,11 +167,13 @@ export default defineConfig({
        * 再添加 `group:url` 前缀。
        */
       sources: [
+        // RSS 是主力：一次返回多条带标题、链接和发布时间的文章。
+        "rss:https://www.sj33.cn/rss",
+        "rss:https://www.archcollege.com/feed",
+        "rss:https://www.designboom.com/feed/",
+        "rss:https://www.dezeen.com/feed/",
+        // `direct` 只能读单篇文章详情页，不要放首页或列表页。
         "domestic:https://www.0x08.org/posts/interior-decorating-material",
-        "domestic:https://www.100.com.tw/article",
-        "domestic:https://www.zhihu.com/people/xiao-ling-xia-15/posts",
-        "domestic:https://www.zhihu.com/people/shi-letian",
-        "domestic:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
       ],
 
       /**

@@ -8,6 +8,8 @@ import { WeixinArticleWorkflowStats } from "./workflow-stats.ts";
 
 export type ArticleSourceFilter =
   | "all"
+  | "direct"
+  | "rss"
   | "firecrawl"
   | "jina"
   | "jina-search"

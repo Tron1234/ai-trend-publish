@@ -113,9 +113,9 @@ Deno.test("article draft service drops paragraphs with unsupported key entities"
     JSON.stringify({
       articles: [{
         id: "section-1",
-        title: "Meta 新方向还缺工程规格",
+        title: "欧派整家套餐还缺供应链细节",
         content:
-          "Meta Muse Spark 目前只有定位标签，官方暂未披露参数、API 或开源状态。<next_paragraph />OpenAI Codex 和税务 Agent 也在同一时期推进场景化 Agent，这能作为对比参照。",
+          "欧派整家套餐目前只有效果图，官方暂未披露板材等级、五金品牌或报价区间。<next_paragraph />索菲亚 和 尚品宅配 也在同一时期推进整家套餐，这能作为对比参照。",
       }],
     })
   ));
@@ -124,12 +124,12 @@ Deno.test("article draft service drops paragraphs with unsupported key entities"
     ...template("section-1"),
     metadata: {
       sourceExcerptText:
-        "Meta AI Blog\nIntroducing Muse Spark: Scaling Towards Personal Superintelligence.",
+        "欧派家居官网\n欧派发布整家定制新方案，覆盖客厅、卧室与阳台柜体。",
     },
   }], plan({ format: "mixed" }));
 
-  assertEquals(result[0].content.includes("Meta Muse Spark"), true);
-  assertEquals(result[0].content.includes("OpenAI Codex"), false);
+  assertEquals(result[0].content.includes("欧派"), true);
+  assertEquals(result[0].content.includes("索菲亚"), false);
 });
 
 Deno.test("article draft service removes unsupported parameter sentences", async () => {
@@ -137,9 +137,9 @@ Deno.test("article draft service removes unsupported parameter sentences", async
     JSON.stringify({
       articles: [{
         id: "section-1",
-        title: "Opus 4.8 选型",
+        title: "淋浴区防水高度核对",
         content:
-          "Claude Opus 4.8 明确提升长任务稳定性。<next_paragraph />如果它维持 Opus 4.7 的 200K token 水平，就适合大上下文迁移；否则建议等待文档。",
+          "卫生间淋浴区墙面防水高度应做到 1.8 米。<next_paragraph />如果板材按 E0 级采购，甲醛释放量可以再低一档。",
       }],
     })
   ));
@@ -148,13 +148,12 @@ Deno.test("article draft service removes unsupported parameter sentences", async
     ...template("section-1"),
     metadata: {
       sourceExcerptText:
-        "Anthropic News\nClaude Opus 4.8 improves coding, agentic tasks and long-running work consistency. Context window is not disclosed.",
+        "住建部\n卫生间淋浴区墙面防水高度不应低于 1.8 米，地面应做闭水试验与保护层。",
     },
   }], plan({ format: "product-review" }));
 
-  assertEquals(result[0].content.includes("Claude Opus 4.8"), true);
-  assertEquals(result[0].content.includes("Opus 4.7"), false);
-  assertEquals(result[0].content.includes("200K"), false);
+  assertEquals(result[0].content.includes("1.8 米"), true);
+  assertEquals(result[0].content.includes("E0"), false);
 });
 
 Deno.test("article draft service also drafts brief formats", async () => {

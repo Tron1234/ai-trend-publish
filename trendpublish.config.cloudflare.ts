@@ -103,7 +103,9 @@ export default defineConfig((runtime) => {
         sources: splitList(
           runtime.value(
             "ARTICLE_SOURCES",
-            "domestic:https://www.0x08.org/posts/interior-decorating-material,domestic:https://www.100.com.tw/article,domestic:https://www.zhihu.com/people/xiao-ling-xia-15/posts,domestic:https://www.zhihu.com/people/shi-letian,domestic:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
+            // 知乎不走直链：Worker 跑在云端，连不到本机的 RSSHub 实例。
+            // 本机部署的知乎源见 trendpublish.config.ts。
+            "domestic:https://www.0x08.org/posts/interior-decorating-material,domestic:https://www.100.com.tw/article",
           ),
         ),
         publisher: {

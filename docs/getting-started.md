@@ -44,16 +44,21 @@ features: {
       promptProfile: "interior",
     },
     sources: [
-      "reliableWeb:https://www.100.com.tw/article",
-      "web:https://www.zhihu.com/search?type=content&q=%E8%A3%85%E4%BF%AE",
+      "rss:https://www.sj33.cn/rss",
+      "rss:https://www.archcollege.com/feed",
+      "domestic:https://www.0x08.org/posts/interior-decorating-material",
     ],
   },
 },
 fetchGroups: {
-  default: ["auto"],
-  social: ["twitter"],
+  default: ["direct"],
+  domestic: ["direct"],
+  rss: ["rss"],
 },
 ```
+
+`direct` 只能读取单篇文章详情页，把首页或列表页放进去只会拿到导航文字；
+需要持续发现新文章时优先用 RSS。
 
 如果你想直接聚合自己维护的 RSS / Atom / JSON Feed，也可以把订阅地址直接放进
 `features.article.sources`：

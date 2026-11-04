@@ -27,18 +27,7 @@ import {
 
 const FETCH_PROVIDER_OPTIONS = [
   "auto",
-  "firecrawl",
-  "jina",
-  "jina-search",
-  "brave-search",
-  "tavily-search",
-  "exa-search",
-  "serper-search",
-  "newsapi",
-  "gdelt",
-  "hackernews",
-  "arxiv",
-  "twitter",
+  "direct",
   "rss",
 ];
 const TEMPLATE_OPTIONS = [
@@ -55,7 +44,6 @@ const TEMPLATE_OPTIONS = [
 ];
 const PROMPT_PROFILE_OPTIONS = [
   "interior",
-  "technology",
   "general",
   "business",
   "product",

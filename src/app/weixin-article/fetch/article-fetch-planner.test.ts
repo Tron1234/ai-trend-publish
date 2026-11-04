@@ -247,7 +247,7 @@ function configFixture(): Pick<
         sources: ["https://news.ycombinator.com/"],
         renderer: {
           template: "minimal",
-          promptProfile: "technology",
+          promptProfile: "interior",
         },
         publisher: {
           provider: "weixin",
