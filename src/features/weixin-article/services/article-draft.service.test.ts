@@ -188,7 +188,7 @@ Deno.test("article draft service sanitizes fallback when LLM fails", async () =>
   const service = new WeixinArticleDraftService({
     initialize: () => Promise.resolve(),
     refresh: () => Promise.resolve(),
-    setModel: () => {},
+    setModel: () => { },
     createChatCompletion: () => Promise.reject(new Error("network down")),
   });
 
@@ -211,7 +211,7 @@ function createLlm(content: () => string): LLMProvider {
   return {
     initialize: () => Promise.resolve(),
     refresh: () => Promise.resolve(),
-    setModel: () => {},
+    setModel: () => { },
     createChatCompletion: () =>
       Promise.resolve({ choices: [{ message: { content: content() } }] }),
   };

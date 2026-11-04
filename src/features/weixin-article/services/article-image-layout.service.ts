@@ -40,8 +40,8 @@ interface AiImageLayoutConfig {
   imageSize: string;
   imageModel?: string;
   imageGeneratorType:
-    | ImageGeneratorType.ALIYUN_IMAGE
-    | ImageGeneratorType.MINIMAX_IMAGE;
+  | ImageGeneratorType.ALIYUN_IMAGE
+  | ImageGeneratorType.MINIMAX_IMAGE;
   promptProfile?: PromptProfileName;
 }
 
@@ -129,9 +129,8 @@ export class WeixinArticleImageLayoutService
   }
 
   private buildImageHtml(url: string): string {
-    return `<img src="${escapeHtmlAttribute(url)}" alt="${
-      escapeHtmlAttribute(this.imageAlt)
-    }" />`;
+    return `<img src="${escapeHtmlAttribute(url)}" alt="${escapeHtmlAttribute(this.imageAlt)
+      }" />`;
   }
 }
 
@@ -142,7 +141,7 @@ export class AiArticleImageLayoutService implements ArticleImageLayoutService {
     private fallbackLayoutService = new WeixinArticleImageLayoutService(),
     private imageGeneratorResolver: AiImageGeneratorResolver,
     private config: AiImageLayoutConfig = DEFAULT_AI_IMAGE_LAYOUT_CONFIG,
-  ) {}
+  ) { }
 
   setGeneratedImageEnabled(enabled: boolean): void {
     this.generatedImageEnabled = enabled;
@@ -172,8 +171,7 @@ export class AiArticleImageLayoutService implements ArticleImageLayoutService {
       );
     } catch (error) {
       logger.warn(
-        `[AI正文配图] 生成失败，回退已有图片布局: ${
-          error instanceof Error ? error.message : String(error)
+        `[AI正文配图] 生成失败，回退已有图片布局: ${error instanceof Error ? error.message : String(error)
         }`,
       );
       return await this.fallbackLayoutService.layoutArticle(article);

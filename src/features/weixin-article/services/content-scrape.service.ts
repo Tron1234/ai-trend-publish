@@ -198,8 +198,7 @@ export class WeixinArticleContentScrapeService {
   ): Promise<ArticleSourceScrapeResult> {
     const startedAt = Date.now();
     logger.debug(
-      `[${source.group}] 抓取: ${source.url}, providers=${
-        source.providers.join(" -> ")
+      `[${source.group}] 抓取: ${source.url}, providers=${source.providers.join(" -> ")
       }`,
     );
 

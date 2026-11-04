@@ -347,7 +347,7 @@ export function createProviderStatus(config: ResolvedTrendPublishConfig) {
       jinaSearch: Boolean(config.providers.fetch.jina.apiKey),
       twitter: Boolean(
         config.providers.fetch.twitter.bearerToken ||
-          config.providers.fetch.twitter.xquikApiKey,
+        config.providers.fetch.twitter.xquikApiKey,
       ),
       rss: Boolean(config.providers.fetch.rss.baseUrl),
     },
@@ -359,7 +359,7 @@ export function createProviderStatus(config: ResolvedTrendPublishConfig) {
       weixin: hasAnyResolvedWeixinAccount(config.providers.publish.weixin),
       weixinRelay: Boolean(
         config.providers.publish.weixinRelay.url &&
-          config.providers.publish.weixinRelay.token,
+        config.providers.publish.weixinRelay.token,
       ),
     },
     notify: {

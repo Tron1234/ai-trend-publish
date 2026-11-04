@@ -26,7 +26,7 @@ export class WeixinArticleResearchService {
   constructor(
     private readonly contentFetcher: ArticleContentFetcher,
     private readonly config: ArticleResearchConfig,
-  ) {}
+  ) { }
 
   async createEvidencePack(input: {
     topicReport: EditorialTopicReport;
@@ -105,10 +105,9 @@ export class WeixinArticleResearchService {
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
         const failureMessage = failures.length
-          ? `${message}; ${
-            failures.map((item) => `${item.provider}: ${item.message}`).join(
-              "; ",
-            )
+          ? `${message}; ${failures.map((item) => `${item.provider}: ${item.message}`).join(
+            "; ",
+          )
           }`
           : message;
         logger.warn(`[补充研究] 搜索失败: ${query} - ${failureMessage}`);
@@ -145,8 +144,7 @@ export class WeixinArticleResearchService {
     const leadTopicTitle = input.editorialDecision.leadTopicTitle;
     const values = [
       leadTopicTitle,
-      `${leadTopicTitle} ${
-        sourceHosts.length ? sourceHosts.join(" ") : "official announcement"
+      `${leadTopicTitle} ${sourceHosts.length ? sourceHosts.join(" ") : "official announcement"
       }`,
       ...input.editorialDecision.selectedTopics.map((topic) =>
         clusterTitleById.get(topic.topicId)
@@ -185,8 +183,7 @@ export class WeixinArticleResearchService {
       return result.content;
     } catch (error) {
       logger.debug(
-        `[补充研究] 证据深抓异常 ${candidate.url}: ${
-          error instanceof Error ? error.message : String(error)
+        `[补充研究] 证据深抓异常 ${candidate.url}: ${error instanceof Error ? error.message : String(error)
         }`,
       );
       return candidate;

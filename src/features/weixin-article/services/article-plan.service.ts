@@ -41,7 +41,7 @@ export class WeixinArticlePlanService {
     private readonly llm: LLMProvider,
     private readonly promptProfile?: PromptProfileName,
     private readonly accountBrand?: JsonObject,
-  ) {}
+  ) { }
 
   async createArticlePlan(
     topicReport: EditorialTopicReport,
@@ -236,12 +236,11 @@ function createFallbackArticlePlan(
     thesis: decision?.decisionSummary ?? inferThesis(topicReport, contents),
     targetReader,
     summary: evidencePack?.items.length
-      ? `结合 ${evidencePack.items.length} 条补充证据兜底组织正文：${
-        evidencePack.items.slice(0, 3).map((item) => item.title).join("；")
+      ? `结合 ${evidencePack.items.length} 条补充证据兜底组织正文：${evidencePack.items.slice(0, 3).map((item) => item.title).join("；")
       }`
       : decision
-      ? `依据编辑决策兜底组织正文：${decision.decisionSummary}`
-      : "AI 文章计划生成失败，已使用本地兜底计划组织正文结构。",
+        ? `依据编辑决策兜底组织正文：${decision.decisionSummary}`
+        : "AI 文章计划生成失败，已使用本地兜底计划组织正文结构。",
     sections,
     titleDirections: [
       {
@@ -624,9 +623,8 @@ function groundArticlePlanToSources(
 
   const unsupportedRiskNote: ArticleRiskNote = {
     level: "high",
-    issue: `文章计划包含来源未直接支持的关键实体：${
-      [...unsupportedPhrases].slice(0, 6).join("、")
-    }。`,
+    issue: `文章计划包含来源未直接支持的关键实体：${[...unsupportedPhrases].slice(0, 6).join("、")
+      }。`,
     handling:
       "已将相关章节和标题方向回退到已核实来源，正文不得继续扩展这些实体。",
   };

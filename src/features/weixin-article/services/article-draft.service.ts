@@ -24,7 +24,7 @@ export class WeixinArticleDraftService {
   constructor(
     private readonly llm: LLMProvider,
     private readonly promptProfile?: PromptProfileName,
-  ) {}
+  ) { }
 
   async draftTemplateData(
     templateData: WeixinTemplate[],
